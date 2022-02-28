@@ -16,6 +16,8 @@ const searchPhone = () => {
 const displayPhoneResult = phones => {
     //console.log(phones)
     const phoneContainer = document.getElementById('phone-container');
+    // remove previous result
+    phoneContainer.textContent = ''
 
     for (const phone of phones) {
         //console.log(phone)
@@ -26,7 +28,7 @@ const displayPhoneResult = phones => {
         <div class="card-body">
             <h5 class="card-title">${phone.phone_name}</h5>
                 <h5>Brand:${phone.brand}</h5>
-                <button onclick="phoneDetails('${phone.slug}')" class="btn-warning">details</button>
+                <button onclick="phoneDetails('${phone.slug}')" class="btn-warning text-light">Details</button>
         </div>
 
     </div>`;
@@ -46,11 +48,13 @@ const phoneDetails = detail => {
 const displayPhoneDetail = info => {
     console.log(info)
     const phoneDetails = document.getElementById('phone-details');
+    // remove previous result
+    phoneDetails.textContent = ''
     const div = document.createElement('div')
     div.classList.add('card');
     div.innerHTML = `<img src="${info.data.image}" class="card-img-top" alt="...">
     <div class="card-body">
-      <h5 class="card-title">${info.data.releaseDate}</h5>
+      <h5 class="card-title">${info.data.releaseDate ? info.data.releaseDate : 'Release Date Not found'}</h5>
       <h5 class="card-title">${info.data.name}</h5>
 
       <h5>sensors:</h5>
