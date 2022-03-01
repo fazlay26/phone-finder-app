@@ -1,9 +1,25 @@
+const NoResultsFound = displayStyle => {
+    document.getElementById('no-results').style.display = displayStyle;
+}
+const writeSomething = displayStyle => {
+    document.getElementById('write-something').style.display = displayStyle;
+}
+
 const searchPhone = () => {
     const searchField = document.getElementById('search-field');
     const searchFieldText = searchField.value;
     //console.log(searchFieldText)
     // remove searchText
     searchField.value = '';
+
+    if (searchFieldText == '') {
+        writeSomething('block')
+        //toggoleSpinner('none')
+
+    }
+    else {
+        writeSomething('none')
+    }
 
     // loadData
     const url = `https://openapi.programming-hero.com/api/phones?search=${searchFieldText}`;
@@ -18,6 +34,14 @@ const displayPhoneResult = phones => {
     const phoneContainer = document.getElementById('phone-container');
     // remove previous result
     phoneContainer.textContent = ''
+    // if (!phones) {
+    //     console.log('nai')
+    //     NoResultsFound('block')
+
+    // }
+    // else {
+    //     NoResultsFound('none')
+    // }
 
     for (const phone of phones) {
         //console.log(phone)
