@@ -121,8 +121,9 @@ const displayPhoneDetail = info => {
     div.classList.add('card');
     div.innerHTML = `<img src="${info.data.image}" class="card-img-top" alt="...">
     <div class="card-body">
+    <h5 class="card-title">${info.data.name}</h5>
       <h5 class="card-title">${info.data.releaseDate ? info.data.releaseDate : 'Release Date Not found'}</h5>
-      <h5 class="card-title">${info.data.name}</h5>
+      
       <h5>sensors:</h5>
       <ul><li>${info.data.mainFeatures.sensors[0]}</li></ul>
       <ul><li>${info.data.mainFeatures.sensors[1]}</li></ul>
@@ -130,6 +131,19 @@ const displayPhoneDetail = info => {
       <ul><li>${info.data.mainFeatures.sensors[3]}</li></ul>
       <ul><li>${info.data.mainFeatures.sensors[4]}</li></ul>
       <ul><li>${info.data.mainFeatures.sensors[5]}</li></ul>
+      <h5>Others</h5>
+      <ul><li>Bluetooth:${info.data.others ? info.data.others.Bluetooth : 'not available'}</li></ul>
+      <ul><li>GPS:${info.data.others ? info.data.others.GPS : 'not available'}</li></ul>
+      <ul><li>NFC:${info.data.others ? info.data.others.NFC : 'not available'}</li></ul>
+      <ul><li>Radio:${info.data.others ? info.data.others.Radio : 'not available'}</li></ul>
+      <ul><li>USB:${info.data.others ? info.data.others.USB : 'not available'}</li></ul>
+      <ul><li>WLAN:${info.data.others ? info.data.others.WLAN : 'not available'}</li></ul>
+      <ul><li>WLAN:${info.data.others ? info.data.others.WLAN : 'not available'}</li></ul>
+      
+
+     
+
+      
       <h5>Display Size</h5>
       <p>${info.data.mainFeatures.displaySize}</p>
       <h5>Memory</h5>
