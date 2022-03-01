@@ -1,3 +1,9 @@
+const toggoleSpinner = displayStyle => {
+    document.getElementById('spinner').style.display = displayStyle;
+}
+const toggoleSearchResult = displayStyle => {
+    document.getElementById('phone-container').style.display = displayStyle;
+}
 const NoResultsFound = displayStyle => {
     document.getElementById('no-results').style.display = displayStyle;
 }
@@ -6,6 +12,8 @@ const writeSomething = displayStyle => {
 }
 
 const searchPhone = () => {
+    toggoleSpinner('block')
+    toggoleSearchResult('none')
     const searchField = document.getElementById('search-field');
     const searchFieldText = searchField.value;
     //console.log(searchFieldText)
@@ -14,11 +22,13 @@ const searchPhone = () => {
 
     if (searchFieldText == '') {
         writeSomething('block')
-        //toggoleSpinner('none')
+        toggoleSpinner('none')
+        NoResultsFound('none')
 
     }
     else {
         writeSomething('none')
+        NoResultsFound('none')
     }
 
     // loadData
@@ -26,6 +36,8 @@ const searchPhone = () => {
     fetch(url)
         .then(res => res.json())
         .then(data => displayPhoneResult(data.data))
+    const phoneDetails = document.getElementById('phone-details');
+    phoneDetails.innerHTML = ''
 
 }
 // displayData
@@ -33,17 +45,22 @@ const displayPhoneResult = phones => {
     //console.log(phones)
     const phoneContainer = document.getElementById('phone-container');
     // remove previous result
-    phoneContainer.textContent = ''
-    // if (!phones) {
-    //     console.log('nai')
-    //     NoResultsFound('block')
+    phoneContainer.innerHTML = ''
+    //if any phones are not in array
+    if (!phones.length) {
 
-    // }
-    // else {
-    //     NoResultsFound('none')
-    // }
+        console.log('nai')
+        NoResultsFound('block')
+        //writeSomething('block')
 
-    for (const phone of phones) {
+    }
+    else {
+        console.log('ase')
+        NoResultsFound('none')
+        //writeSomething('none')
+
+    }
+    phones.slice(0, 21)?.forEach(phone => {
         //console.log(phone)
         const div = document.createElement('div');
         div.classList.add('col');
@@ -58,7 +75,10 @@ const displayPhoneResult = phones => {
     </div>`;
         phoneContainer.appendChild(div)
 
-    }
+    })
+    toggoleSpinner('none');
+    toggoleSearchResult('flex')
+
 }
 // load single phone details
 const phoneDetails = detail => {
@@ -80,7 +100,6 @@ const displayPhoneDetail = info => {
     <div class="card-body">
       <h5 class="card-title">${info.data.releaseDate ? info.data.releaseDate : 'Release Date Not found'}</h5>
       <h5 class="card-title">${info.data.name}</h5>
-
       <h5>sensors:</h5>
       <ul><li>${info.data.mainFeatures.sensors[0]}</li></ul>
       <ul><li>${info.data.mainFeatures.sensors[1]}</li></ul>
@@ -94,9 +113,6 @@ const displayPhoneDetail = info => {
       <p>${info.data.mainFeatures.memory}</p>
       <h5>Storage</h5>
       <p>${info.data.mainFeatures.storage}</p>
-
-
-
     </div>`;
     phoneDetails.appendChild(div);
 
