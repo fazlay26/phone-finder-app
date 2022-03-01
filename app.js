@@ -10,6 +10,9 @@ const NoResultsFound = displayStyle => {
 const writeSomething = displayStyle => {
     document.getElementById('write-something').style.display = displayStyle;
 }
+const mobileFounder = displayStyle => {
+    document.getElementById('phone-founder').style.display = displayStyle;
+}
 const searchPhone = () => {
     toggoleSpinner('block')
     toggoleSearchResult('none')
@@ -51,6 +54,7 @@ const displayPhoneResult = phones => {
 
 
         NoResultsFound('block')
+        mobileFounder('none')
         //writeSomething('block')
 
     }
@@ -58,17 +62,18 @@ const displayPhoneResult = phones => {
 
         NoResultsFound('none')
         //writeSomething('none')
+        mobileFounder('block')
 
     }
     const phoneFounder = document.getElementById('phone-founder');
     phoneFounder.innerHTML = ''
     const p = document.createElement('p');
-    p.innerHTML = `<p>${phones.slice(0, 21).length} phones Found</p> `;
+    p.innerHTML = `<p>${phones.slice(0, 20).length} phones Found</p> `;
     phoneFounder.appendChild(p);
 
 
 
-    phones.slice(0, 21)?.forEach(phone => {
+    phones.slice(0, 20)?.forEach(phone => {
         //console.log(phone)
 
         const div = document.createElement('div');
