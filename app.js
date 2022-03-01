@@ -4,6 +4,9 @@ const toggoleSpinner = displayStyle => {
 const toggoleSearchResult = displayStyle => {
     document.getElementById('phone-container').style.display = displayStyle;
 }
+const toggoleSinglePhone = displayStyle => {
+    document.getElementById('phone-details').style.display = displayStyle;
+}
 const NoResultsFound = displayStyle => {
     document.getElementById('no-results').style.display = displayStyle;
 }
@@ -84,7 +87,7 @@ const displayPhoneResult = phones => {
         <div class="card-body">
             <h5 class="card-title">${phone.phone_name}</h5>
                 <h5>Brand:${phone.brand}</h5>
-                <button onclick="phoneDetails('${phone.slug}')" class="btn-warning text-light">Details</button>
+                <button onclick="phoneDetails('${phone.slug}')" class=" btn-primary text-light rounded">Details</button>
         </div>
 
     </div>`;
@@ -102,10 +105,15 @@ const phoneDetails = detail => {
     fetch(url)
         .then(res => res.json())
         .then(data => displayPhoneDetail(data))
+
+    toggoleSpinner('block')
 }
+
 // display single phoneDetails
 const displayPhoneDetail = info => {
     console.log(info)
+    toggoleSpinner('block');
+    toggoleSinglePhone('none')
     const phoneDetails = document.getElementById('phone-details');
     // remove previous result
     phoneDetails.textContent = ''
@@ -130,5 +138,7 @@ const displayPhoneDetail = info => {
       <p>${info.data.mainFeatures.storage}</p>
     </div>`;
     phoneDetails.appendChild(div);
+    toggoleSpinner('none')
+    toggoleSinglePhone('block')
 
 }
