@@ -10,7 +10,6 @@ const NoResultsFound = displayStyle => {
 const writeSomething = displayStyle => {
     document.getElementById('write-something').style.display = displayStyle;
 }
-
 const searchPhone = () => {
     toggoleSpinner('block')
     toggoleSearchResult('none')
@@ -42,29 +41,40 @@ const searchPhone = () => {
 }
 // displayData
 const displayPhoneResult = phones => {
-    //console.log(phones)
+    console.log(phones)
+
     const phoneContainer = document.getElementById('phone-container');
     // remove previous result
     phoneContainer.innerHTML = ''
     //if any phones are not in array
     if (!phones.length) {
 
-        console.log('nai')
+
         NoResultsFound('block')
         //writeSomething('block')
 
     }
     else {
-        console.log('ase')
+
         NoResultsFound('none')
         //writeSomething('none')
 
     }
+    const phoneFounder = document.getElementById('phone-founder');
+    phoneFounder.innerHTML = ''
+    const p = document.createElement('p');
+    p.innerHTML = `<p>${phones.slice(0, 21).length} phones Found</p> `;
+    phoneFounder.appendChild(p);
+
+
+
     phones.slice(0, 21)?.forEach(phone => {
         //console.log(phone)
+
         const div = document.createElement('div');
         div.classList.add('col');
-        div.innerHTML = ` <div class="card">
+        div.innerHTML = `
+        <div class="card">
         <img src="${phone.image}" class="card-img-top" alt="...">
         <div class="card-body">
             <h5 class="card-title">${phone.phone_name}</h5>

@@ -1,6 +1,6 @@
 .col img{
-    width: 75%;
-    height: 50%;
+    width: 50%;
+    margin: auto;
 }
 #no-results{
     display: none;
