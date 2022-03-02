@@ -141,7 +141,8 @@ const displayPhoneDetail = info => {
       <ul><li>WLAN:${info.data.others ? info.data.others.WLAN : 'not available'}</li></ul>
       
 
-     
+      <h5>Chipset</h5>
+      <p>${info.data.mainFeatures.chipSet}</p>
 
       
       <h5>Display Size</h5>
