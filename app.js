@@ -47,7 +47,7 @@ const searchPhone = () => {
 }
 // displayData
 const displayPhoneResult = phones => {
-    console.log(phones)
+    //console.log(phones)
 
     const phoneContainer = document.getElementById('phone-container');
     // remove previous result
@@ -111,7 +111,7 @@ const phoneDetails = detail => {
 
 // display single phoneDetails
 const displayPhoneDetail = info => {
-    console.log(info)
+    //console.log(info)
     toggoleSpinner('block');
     toggoleSinglePhone('none')
     const phoneDetails = document.getElementById('phone-details');
